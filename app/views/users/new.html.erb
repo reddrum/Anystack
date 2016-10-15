@@ -39,3 +39,30 @@
 
   <% end %>
 </div>
+
+
+
+
+<script type="text/javascript">
+var file_key = "ADBeIO1BxQ3CAIHKciGrWz";
+
+function avatar(event) {
+  event.preventDefault();
+  filepicker.setKey(file_key);
+  filepicker.pick(
+      {
+        mimetype: 'image/*',
+        container: 'modal',
+        services: ['COMPUTER', 'URL']
+      },
+      function(Blob){
+        $("#profile-img").attr('src', Blob.url);
+        $("#hidden_input_avatar").val(Blob.url);
+      },
+      function(FPError){
+
+      }
+  );
+
+}
+</script>
