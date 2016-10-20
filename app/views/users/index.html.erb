@@ -27,3 +27,35 @@
   <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+var file_key = "ADBeIO1BxQ3CAIHKciGrWz";
+
+    function get_metadata(url) {
+
+      $.get( url + "/metadata", function( data ) {
+        get_file(data.filename,data.mimetype,data.isWriteable,data.size, url);
+      });
+
+    }
+
+    function get_file(filename, mimetype, isWriteable, size, url) {
+
+      filepicker.setKey(file_key);
+      var blob = {
+        url: url,
+        filename: filename,
+        mimetype: mimetype,
+        isWriteable: isWriteable,
+        size: size
+      };
+
+      filepicker.exportFile(
+          blob,
+          function(Blob){
+            console.log(Blob.url);
+          }
+      );
+
+    }
+</script>
